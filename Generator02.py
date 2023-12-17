@@ -36,3 +36,6 @@ def generate_music01(scale: int, filepath: str):
     add_one_interval(2 * intervals, velocity=50)
     myStream.write('midi', fp=filepath)
 
+
+if __name__ == '__main__':
+    generate_music01(65, 'example.midi')
