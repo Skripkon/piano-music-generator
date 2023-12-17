@@ -1,5 +1,3 @@
-
-https://github.com/Skripkon/music-generator/assets/78466953/6c799e57-67da-4947-893f-50c1b53f2cee
 # New algorithm for generating piano music using Python.
 ## Class ```MinorMusicGenerator```:
 1. Contains all notes and chords that should be used (calculated for the given scale).
