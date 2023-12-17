@@ -1,9 +1,9 @@
 from MinorMusicGenerator import MinorMusicGenerator
-from music21 import note, chord, stream
+from music21 import note, stream
 import random
 
 
-def generate_music01(scale: int, filepath: str):
+def generate_music02(scale: int, filepath: str):
     new_song_generator = MinorMusicGenerator(scale)
     myStream = stream.Stream()
     note_duration = [2, 1, 0.5]
@@ -38,4 +38,4 @@ def generate_music01(scale: int, filepath: str):
 
 
 if __name__ == '__main__':
-    generate_music01(65, 'example.midi')
+    generate_music02(65, 'example.midi')

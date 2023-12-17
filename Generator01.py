@@ -15,7 +15,7 @@ def generate_music01(scale: int, filepath: str):
         number_of_notes = 2 ** random_number
         duration = note_duration[random_number]
         shift: int = octave_shift_from_4 * 12
-        for i in range(number_of_notes):
+        for note_i in range(number_of_notes):
             random_note = new_song_generator.correct_notes[random.randint(0, 6)] + shift
             my_note = note.Note(random_note, quarterLength=duration)
             my_note.volume.velocity = velocity
@@ -32,3 +32,7 @@ def generate_music01(scale: int, filepath: str):
     add_one_interval(2 * intervals, velocity=50)
 
     myStream.write('midi', fp=filepath)
+
+
+if __name__ == '__main__':
+    generate_music01(65, 'example.midi')
