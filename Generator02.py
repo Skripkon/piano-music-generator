@@ -1,41 +1,57 @@
 from MinorMusicGenerator import MinorMusicGenerator
-from music21 import note, stream
+from music21 import note, stream, chord
 import random
 
 
 def generate_music02(scale: int, filepath: str):
     new_song_generator = MinorMusicGenerator(scale)
     myStream = stream.Stream()
-    note_duration = [2, 1, 0.5]
-    intervals = 20
+    note_duration = [4, 2, 1, 0.66]
+    number_of_notes = [1, 2, 4, 6]
+    intervals = 40
     volumes = [100, 50, 60, 60, 70, 80, 100, 80, 70, 60, 50, 50]
 
-    def add_one_interval(index: int, octave_shift_from_4: int = 0, velocity: int = 90):
+    def add_one_interval(current_index=0, octave_shift_from_4: int = 0,
+                         current_velocity: int = 90, left_hand_shift: int = 0):
         # generating notes for the right hand
-        random_number = random.randint(0, 2)
-        number_of_notes = 2 ** (random_number + 1)
-        duration = note_duration[random_number]
+        current_index_for_the_right_hand = current_index
+        current_note_duration_index = random.randint(0, len(note_duration) - 1)
+        if current_index == 0:
+            current_note_duration_index = 0
+        current_number_of_notes = number_of_notes[current_note_duration_index]
+        current_duration = note_duration[current_note_duration_index]
         shift: int = octave_shift_from_4 * 12
-        for note_i in range(number_of_notes):
-            random_note = new_song_generator.correct_notes[random.randint(0, 6)] + shift
-            my_note = note.Note(random_note, quarterLength=duration)
-            my_note.volume.velocity = velocity
-            myStream.append(my_note)
+        for note_i in range(current_number_of_notes):
+            if random.randint(0, 8) % 7 != 0:
+                random_note = new_song_generator.correct_notes[random.randint(0, 6)] + shift
+                my_note = note.Note(random_note, quarterLength=current_duration + 1.5)
+                my_note.volume.velocity = current_velocity
+                myStream.insert(current_index_for_the_right_hand, my_note)
+            current_index_for_the_right_hand += current_duration
 
         # generating the chord for the left hand
         sequence_of_notes = new_song_generator.baselines[random.randint(0, 2)]
+        if current_index == 0:
+            return
+
         for note_i in range(0, 12):
             cur_note = sequence_of_notes[note_i]
-            new_note = note.Note(cur_note, quarterLength=0.33)
-            new_note.volume.velocity = velocity
-            new_note.volume.velocity = volumes[note_i]
-            myStream.insert(index + (note_i / 3), new_note)
+            if random.randint(0, 8) % 7 != 0:
+                for note_in_a_chord in range(len(sequence_of_notes)):
+                    note_in_a_chord += 12 * left_hand_shift
+                new_note = note.Note(cur_note, quarterLength=1.5)
+                new_note.volume.velocity = volumes[note_i]
+                myStream.insert(current_index, new_note)
+            current_index += 0.33
 
     for i in range(intervals):
-        add_one_interval(4 * i, octave_shift_from_4=random.randint(-1, 0), velocity=random.randint(70, 120))
-    add_one_interval(2 * intervals, velocity=50)
+        add_one_interval(current_index=4 * i,
+                         octave_shift_from_4=random.randint(-3, 1),
+                         current_velocity=random.randint(80, 120),
+                         left_hand_shift=random.randint(-4, -2))
+    add_one_interval(current_index=2 * intervals, current_velocity=50)
     myStream.write('midi', fp=filepath)
 
 
 if __name__ == '__main__':
-    generate_music02(65, 'example.midi')
+    generate_music02(68, 'example.midi')
