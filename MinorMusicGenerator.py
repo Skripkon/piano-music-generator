@@ -6,6 +6,7 @@ class MinorMusicGenerator:
         self.minor_chords = None
         self.correct_notes = None
         self.baselines = None
+        self.additional_chords = None
         # check if scale is integer and in a range of (59, 70)
         if not isinstance(scale, int):
             raise ValueError("scale must be an integer")
@@ -17,6 +18,7 @@ class MinorMusicGenerator:
         self.correct_minor_chords()
         self.create_baselines()
         self.calculate_correct_notes()
+        self.add_additional_chords()
 
     # calculates a list of corrected notes based on a predefined set of shifts.
     # store the result in the correct_notes attribute.
@@ -53,3 +55,11 @@ class MinorMusicGenerator:
         second_baseline = self.create_one_baseline(self.scale + 5)
         third_baseline = self.create_one_baseline(self.scale + 7)
         self.baselines = [first_baseline, second_baseline, third_baseline]
+
+    def add_additional_chords(self):
+        chord1 = [self.scale, self.scale + 3, self.scale + 7, self.scale + 8]
+        chord2 = [self.scale - 2, self.scale + 2, self.scale + 5, self.scale + 8]
+        chord3 = [self.scale + 2, self.scale + 5, self.scale + 8, self.scale + 12]
+        chord4 = [self.scale + 2, self.scale + 5, self.scale + 7]
+        chord5 = [self.scale, self.scale + 3, self.scale + 5]
+        self.additional_chords = [chord1, chord2, chord3, chord4, chord5]
