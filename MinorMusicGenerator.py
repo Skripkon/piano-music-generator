@@ -41,6 +41,14 @@ class MinorMusicGenerator:
         third_chord = self.get_minor_chord(self.scale + 7 - 12)
         self.minor_chords = [first_chord, second_chord, third_chord]
 
+    def add_additional_chords(self):
+        chord1 = [self.scale, self.scale + 3, self.scale + 7, self.scale + 8]
+        chord2 = [self.scale - 2, self.scale + 2, self.scale + 5, self.scale + 8]
+        chord3 = [self.scale + 2, self.scale + 5, self.scale + 8, self.scale + 12]
+        chord4 = [self.scale + 2, self.scale + 5, self.scale + 7]
+        chord5 = [self.scale, self.scale + 3, self.scale + 5]
+        self.additional_chords = [chord1, chord2, chord3, chord4, chord5]
+
     # creates a sequence of notes for the left hand
     @staticmethod
     def create_one_baseline(scale):
@@ -55,11 +63,3 @@ class MinorMusicGenerator:
         second_baseline = self.create_one_baseline(self.scale + 5)
         third_baseline = self.create_one_baseline(self.scale + 7)
         self.baselines = [first_baseline, second_baseline, third_baseline]
-
-    def add_additional_chords(self):
-        chord1 = [self.scale, self.scale + 3, self.scale + 7, self.scale + 8]
-        chord2 = [self.scale - 2, self.scale + 2, self.scale + 5, self.scale + 8]
-        chord3 = [self.scale + 2, self.scale + 5, self.scale + 8, self.scale + 12]
-        chord4 = [self.scale + 2, self.scale + 5, self.scale + 7]
-        chord5 = [self.scale, self.scale + 3, self.scale + 5]
-        self.additional_chords = [chord1, chord2, chord3, chord4, chord5]
