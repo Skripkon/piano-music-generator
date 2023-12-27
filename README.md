@@ -1,7 +1,7 @@
 # New algorithm for generating piano music using Python.
 ## Class ```MinorMusicGenerator```:
 1. Contains all notes and chords that should be used (calculated for the given scale).
-2. ```.correct_notes``` and ```.minor_chords``` sound good together.
+2. ```.correct_notes```, ```.minor_chords``` and ```.additional_chords``` sound good together
 
 ## GeneratorXX.py:
 1. Examples of music generators.
