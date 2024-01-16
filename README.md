@@ -15,5 +15,5 @@ https://github.com/Skripkon/music-generator/assets/78466953/55daab4c-9a9a-406e-9
 
 #### Generator 02:
 
-https://github.com/Skripkon/music-generator/assets/78466953/1809114b-226e-44ca-848c-7fd1234adee1
+https://github.com/Skripkon/piano-music-generator/assets/78466953/ce84c8d8-2822-4094-a984-21547ac8a0b0
 
